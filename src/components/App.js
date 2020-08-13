@@ -12,9 +12,16 @@ class App  extends React.Component {
         selectedVideo: null
     }
 
+    componentDidMount(){
+        this.onTermSubmit('cats')
+    }
+
     onTermSubmit = async (term)=>{
         const response = await youtubeRequest(term);
-        this.setState({videos: response.items})
+        this.setState({
+            videos: response.items,
+            selectedVideo: response.items[0]
+        })
     }
 
     onVideoSelect = (video) => {
